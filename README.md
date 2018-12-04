@@ -23,6 +23,7 @@ $ docker-compose up
 ## Contratos da API
 
 `/spotify/coordinates/:lat/:lon`
+
 Realiza a indicação de musicas pelo clima da codernada
 
 Parametros:
@@ -33,6 +34,7 @@ Retorna:
 - Array com as tracks
 
 `/spotify/city/:city`
+
 Realiza a indicação de musicas pelo clima da cidade
 
 Parametros:
