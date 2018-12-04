@@ -4,9 +4,13 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.ifood.vemproifood.dishlist.model.SpotifyResponse;
+
+
 @RestController
 @RequestMapping(path = "spotify")
 public class SpotifyService {
+	
 
 	public static String SPOTIFY_URL = "https://api.spotify.com/v1/recommendations?seed_genres=";
 	public static String accessToken = new SpotifyGetTokenService().getSpotifyToken();
@@ -44,12 +48,15 @@ public class SpotifyService {
 	
 	@GetMapping(path = "/city/{city}")
 	public Object suggestTrackByCity(@PathVariable String city) {
+		
 		double tempByCity = new OpenWeatherService().retrieveCurrentTemperatureByCity(city);
 		String url = SPOTIFY_URL + getGenres(tempByCity);
 		
 		RestTemplate restTemplateByCity = new RestTemplate();
 		HttpEntity<String> entity = new HttpEntity<String>(createHeaders());
-		ResponseEntity<Object> response = restTemplateByCity.exchange(url, HttpMethod.GET, entity, Object.class);
+		ResponseEntity<SpotifyResponse> response = restTemplateByCity.exchange(url, HttpMethod.GET, entity, SpotifyResponse.class);
+		
+		
 		return response.getBody();
 	}
 
