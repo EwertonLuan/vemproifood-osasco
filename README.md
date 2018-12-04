@@ -1,42 +1,66 @@
-# Dados importantes
+## Pré-requisitos
 
-Recomendacao: https://6h3yzrpuwj.execute-api.sa-east-1.amazonaws.com/v1/recommend?city=
-Maps API Key `AIzaSyDdXLUyZosLC8fQftguJ-F953J_ANTQQ5A`
+- [Java JDK 8](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Maven](https://maven.apache.org/install.html)
 
+Para poder utilizar o docker será necessário installar os seguintes programas:
+- [Docker](https://www.docker.com/)
+- [Docker-compose](https://docs.docker.com/compose/)
+
+## Iniciando a API
+
+Para iniciar a API localmente utilizando uma IDE basta rodar o arquivo DishListServiceApplication.java.
+
+Antes de iniciar a API através do Docker é necessário criar o arquivo app.jar, dentro da pasta do projeto rode o comando:
+```
+$ mvn package
+```
+Após ter criado o app.jar utilize o docker-composose para iniciar a API:
+```
+$ docker-compose up
+```
 
 ## Contratos da API
 
-`/dish-list/:lat/:lon`
-Recupera uma lista de pratos com base nos dados de lat/long enviados pelo aplicativo.
+`/spotify/coordinates/:lat/:lon`
+Realiza a indicação de musicas pelo clima da codernada
 
 Parametros:
 - :lat - latitude
 - :lon - longitude
 
 Retorna:
-- Array com os nomes dos pratos desse tipo de cozinha
+- Array com as tracks
 
-Exemplo:
-```
-[
-    "Pizza de mussarela",
-    "Hamburger simples"
-]
-```
-
-`/dish-detail/:dish`
-Recupera os detalhes de um determinado prato
+`/spotify/city/:city`
+Realiza a indicação de musicas pelo clima da cidade
 
 Parametros:
-- :dish - nome do prato
+- :city - nome da cidade
 
 Retorna:
-Um objeto contendo o nome do restaurante daquele prato e o nome do prato
+- Array com as tracks
 
 Exemplo:
+
 ```
 {
-    restaurant: "Pizza Hut Limao",
-    dish: "Pizza Supreme"
+    "tracks": [
+        {
+            "artists": [
+                {
+                    "name": "The 1975"
+                }
+            ],
+            "name": "Love It If We Made It"
+        },
+        {
+            "artists": [
+                {
+                    "name": "Bobby Shmurda"
+                }
+            ],
+            "name": "Hot N*gga"
+        }
 }
 ```
