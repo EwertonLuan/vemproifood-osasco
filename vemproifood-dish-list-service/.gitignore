@@ -1,4 +1,5 @@
 /bin/
 /target/
-
+/.ideia/
 \.DS_Store
+/.settings/
