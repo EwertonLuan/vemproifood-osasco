@@ -1,0 +1,6 @@
+{
+    "name": "Java API Musica e Clima",
+    "description": "API java com spring boot, integração com OpenWeatherServicee Spotify",
+    "repository": "https://github.com/EwertonLuan/vemproifood-osasco",
+    "keywords": ["java", "openweather", "spotify"]
+  }
